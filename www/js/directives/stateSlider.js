@@ -5,20 +5,24 @@
       .directive('stateSlider', function () {
           return {
               restrict: 'EA',
-              template: '<div class="state-slider" ng-click="next()"><div class="{{t.cssClass}}" ng-class="state($index)" ng-repeat="t in stateData" ng-bind="getText($index)"></div></div>',
+              template: '<div class="state-slider" on-swipe-left="nextState()" on-swipe-right="prevState()"><div class="{{t.cssClass}}" ng-class="state($index)" ng-repeat="t in stateData" ng-bind="getText($index)"></div></div>',
               scope: {
                   stateData: "=",
                   selectedIndex: "="
               },
               replace: true,
               link: function (scope, element, attrs, ctrl) {
-                  scope.next = function () {
-                      scope.selectedIndex = scope.selectedIndex + 1;
-
-                      if (scope.stateData.length == scope.selectedIndex) {
-                          scope.selectedIndex = 0;
+                  scope.prevState = function () {                      
+                      if (scope.selectedIndex > 0) {
+                          scope.selectedIndex = scope.selectedIndex - 1;
                       }
-                  }
+                  };
+
+                  scope.nextState = function () {
+                      if (scope.selectedIndex < scope.stateData.length - 1) {
+                          scope.selectedIndex = scope.selectedIndex + 1;
+                      }
+                  };
 
                   scope.state = function (id) {
                       if (scope.selectedIndex == id) {
@@ -26,7 +30,7 @@
                       }
 
                       return 'state-collapsed';
-                  }
+                  };
 
                   scope.getText = function (id) {
                       if (scope.selectedIndex == id) {
@@ -34,7 +38,7 @@
                       }
 
                       return '';
-                  }
+                  };
               }
           }
       });
