@@ -25,7 +25,7 @@
             <button class="button icon-left ion-android-sync">Sync</button>
         </ion-header-bar>
         <ion-content>
-            <state-slider state-data="data.states" selected-index="data.index"></state-slider>
+            <state-slider ng-repeat="item in data" state-data="item.states" selected-index="item.index"></state-slider>
         </ion-content>
     </ion-pane>
 </body>
