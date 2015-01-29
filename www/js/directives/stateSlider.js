@@ -10,7 +10,7 @@
                   stateData: "=",
                   selectedIndex: "="
               },
-              replace: true,
+              replace: false,
               link: function (scope, element, attrs, ctrl) {
                   scope.prevState = function () {                      
                       if (scope.selectedIndex > 0) {
