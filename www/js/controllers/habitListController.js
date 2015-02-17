@@ -28,13 +28,13 @@
                   "StateText": [
                       "Finish shower", "Make one commit", "Play game"
                   ],
-                  index: 0
+                  "Index": 0
               },
               {
                   "StateText": [
                       "Finish breakfast", "Eat Vitamin", "No reward"
                   ],
-                  index: 1
+                  "Index": 1
               }
           ];
 
