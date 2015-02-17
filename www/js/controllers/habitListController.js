@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('habit')
-      .controller('habitListController', function ($scope) {
+      .controller('habitListController', function ($scope, syncDataService) {
           //$scope.data = [
           //    {
           //        states: [
@@ -22,21 +22,32 @@
           //    }
           //];
 
+          syncDataService.getHabits().
+              success(function (data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  $scope.data = data;
+              }).
+              error(function (data, status, headers, config) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+              });
 
-          $scope.data = [
-              {
-                  "StateText": [
-                      "Finish shower", "Make one commit", "Play game"
-                  ],
-                  "Index": 0
-              },
-              {
-                  "StateText": [
-                      "Finish breakfast", "Eat Vitamin", "No reward"
-                  ],
-                  "Index": 1
-              }
-          ];
+
+          //$scope.data = [
+          //    {
+          //        "StateText": [
+          //            "Finish shower", "Make one commit", "Play game"
+          //        ],
+          //        "Index": 0
+          //    },
+          //    {
+          //        "StateText": [
+          //            "Finish breakfast", "Eat Vitamin", "No reward"
+          //        ],
+          //        "Index": 1
+          //    }
+          //];
 
       });
 })();
