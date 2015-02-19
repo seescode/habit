@@ -5,7 +5,7 @@
         var getHabits = function () {
             //TODO use $resource
             //TODO do not hardcode the server url
-            var promise = $http.get('http://localhost:59919/api/sync');
+            var promise = $http.get('http://habitadmin/api/sync');
 
             return promise;
         },
