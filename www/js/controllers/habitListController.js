@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('habit')
-      .controller('habitListController', function ($scope, syncDataService) {
+      .controller('habitListController', function ($scope, syncWebService) {
           //$scope.data = [
           //    {
           //        states: [
@@ -22,7 +22,7 @@
           //    }
           //];
 
-          syncDataService.query(function (data) {
+          syncWebService.query(function (data) {
               $scope.data = data;
           });
 
