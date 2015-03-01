@@ -32,10 +32,11 @@
     <ion-pane>
         <ion-header-bar class="bar-stable">
             <h1 class="title">My Habits</h1>            
-            <button class="button icon-left ion-android-sync">Sync</button>
+            <button ng-click="sync()" class="button icon-left ion-android-sync">Sync</button>
         </ion-header-bar>
         <ion-content>            
             <habit-state-slider ng-repeat="item in data" state-text="item.StateText" selected-index="item.Index"></habit-state-slider>
+            <div class="no-habits" ng-if="data == null">No habits yet.  Hit sync to get some.</div>
         </ion-content>
     </ion-pane>
 </body>
