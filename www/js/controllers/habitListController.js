@@ -5,7 +5,13 @@
       .controller('habitListController', function (syncWebService, habitDataService) {
           var vm = this;
 
-          vm.data = null;
+          habitDataService.read().then(function (data) {
+              if (data != null) {
+                  vm.data = data;
+              } else {
+                  vm.data = null;
+              }
+          });
 
           vm.sync = function () {
               syncWebService.query(function (data) {
@@ -13,8 +19,5 @@
                   habitDataService.save(data);
               });
           };
-
-
-
       });
 })();

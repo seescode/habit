@@ -1,24 +1,15 @@
 ﻿'use strict';
 (function () {
     angular.module('habit').factory('habitDataService', function ($localForage) {
-
-        //-habitDataService.save(object habitText)
-        //    -Run this method right after you do a sync
-        //-habitDataService.read()
-        //    -Run this method on start.  If there is no information then list none. 
+        //TODO: right now when you save stuff it saves it to localhost:8100 which contains the
+        //info for your kanji app.  You need to change the url or port.  
         var service = {
             save: function (habits) {
-                console.log('saving');
-
-                $localForage.setItem('habits', habits);
-
-                //$localForage.setItem(config.currentLevelKey, 1).then(function () {
-                //});
-
+                //TODO use constantsService
+                return $localForage.setItem('habits', habits);
             },
             read: function () {
-                console.log('reading');
-
+                return $localForage.getItem('habits');
             }
         };
 
