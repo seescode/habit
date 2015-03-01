@@ -2,12 +2,14 @@
 
 (function () {
     angular.module('habit')
-      .controller('habitListController', function ($scope, syncWebService) {
-          $scope.data = null;
+      .controller('habitListController', function (syncWebService) {
+          var vm = this;
 
-          $scope.sync = function () {
+          vm.data = null;
+
+          vm.sync = function () {
               syncWebService.query(function (data) {
-                  $scope.data = data;
+                  vm.data = data;
               });
           };
 
