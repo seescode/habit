@@ -14,7 +14,7 @@
           });
 
           vm.sync = function () {
-              syncWebService.query(function (data) {
+              syncWebService.get(function (data) {
                   vm.data = data;
                   habitDataService.save(data);
               });

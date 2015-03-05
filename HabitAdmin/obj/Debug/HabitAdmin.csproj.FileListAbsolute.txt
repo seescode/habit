@@ -62,3 +62,9 @@ C:\Users\yong\Documents\GitHub\habit\HabitAdmin\obj\Debug\HabitAdmin.pdb
 C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\System.Web.Cors.dll
 C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\System.Web.Http.Cors.dll
 C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\System.Web.Http.Cors.xml
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Abstractions.dll
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Client.Lightweight.dll
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Abstractions.pdb
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Abstractions.xml
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Client.Lightweight.pdb
+C:\Users\yong\Documents\GitHub\habit\HabitAdmin\bin\Raven.Client.Lightweight.xml
