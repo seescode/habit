@@ -37,7 +37,7 @@
         </ion-header-bar>
         <ion-content>            
             <habit-state-slider ng-repeat="item in vm.data.Habits" state-text="item.StateText" selected-index="item.Index"></habit-state-slider>
-            <div class="no-habits" ng-if="vm.data === null">No habits yet.  Hit sync to get some.</div>
+            <div class="no-habits" ng-bind="vm.msg"></div>
         </ion-content>
     </ion-pane>
 </body>

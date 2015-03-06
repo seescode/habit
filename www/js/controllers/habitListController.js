@@ -10,13 +10,17 @@
                   vm.data = data;
               } else {
                   vm.data = null;
+                  vm.msg = 'No habits yet.  Hit sync to get some.';
               }
           });
 
           vm.sync = function () {
               syncWebService.get(function (data) {
-                  vm.data = data;
-                  habitDataService.save(data);
+                  if (data != null) {
+                      vm.msg = '';
+                      vm.data = data;
+                      habitDataService.save(data);
+                  }
               });
           };
       });
