@@ -5,7 +5,7 @@
       .directive('stateSlider', function () {
           return {
               restrict: 'EA',
-              template: '<div class="state-slider" on-swipe-left="nextState()" on-swipe-right="prevState()"><div class="{{t.cssClass}}" ng-class="state($index)" ng-repeat="t in stateData" ng-bind="getText($index)"></div></div>',
+              templateUrl: 'templates/directives/stateSlider.html',
               scope: {
                   stateData: "=",
                   selectedIndex: "="

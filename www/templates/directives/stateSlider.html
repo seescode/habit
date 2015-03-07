@@ -1,0 +1,3 @@
+﻿<div class="state-slider" on-swipe-left="nextState()" on-swipe-right="prevState()">
+    <div ng-repeat="t in stateData" class="{{t.cssClass}}" ng-class="state($index)" ng-bind="getText($index)"></div>
+</div>
