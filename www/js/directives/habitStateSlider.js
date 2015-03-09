@@ -5,7 +5,7 @@
       .directive('habitStateSlider', function () {
           return {
               restrict: 'EA',
-              template: '<state-slider state-data="stateData" selected-index="selectedIndex"></state-slider>',
+              templateUrl: 'templates/directives/habitStateSlider.html',
               scope: {
                   stateText: "=",
                   selectedIndex: "="
@@ -26,6 +26,13 @@
                   scope.stateData[1].cssClass = 'routine';
                   scope.stateData[2].cssClass = 'reward';
 
+                  scope.prevStateClick = function (selectedIndex) {
+                      alert(selectedIndex);
+                  };
+
+                  scope.nextStateClick = function (selectedIndex) {
+                      alert(selectedIndex);
+                  };
               }
           }
       });

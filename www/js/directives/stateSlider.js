@@ -8,19 +8,23 @@
               templateUrl: 'templates/directives/stateSlider.html',
               scope: {
                   stateData: "=",
-                  selectedIndex: "="
+                  selectedIndex: "=",
+                  prevStateClick: "&",
+                  nextStateClick: "&"
               },
               replace: false,
               link: function (scope, element, attrs, ctrl) {
                   scope.prevState = function () {                      
                       if (scope.selectedIndex > 0) {
                           scope.selectedIndex = scope.selectedIndex - 1;
+                          scope.prevStateClick()(scope.selectedIndex);
                       }
                   };
 
                   scope.nextState = function () {
                       if (scope.selectedIndex < scope.stateData.length - 1) {
                           scope.selectedIndex = scope.selectedIndex + 1;
+                          scope.nextStateClick()(scope.selectedIndex);
                       }
                   };
 
