@@ -17,14 +17,14 @@
                   scope.prevState = function () {                      
                       if (scope.selectedIndex > 0) {
                           scope.selectedIndex = scope.selectedIndex - 1;
-                          scope.prevStateClick()(scope.selectedIndex);
+                          scope.prevStateClick()(scope.selectedIndex, scope.stateData.length);
                       }
                   };
 
                   scope.nextState = function () {
                       if (scope.selectedIndex < scope.stateData.length - 1) {
                           scope.selectedIndex = scope.selectedIndex + 1;
-                          scope.nextStateClick()(scope.selectedIndex);
+                          scope.nextStateClick()(scope.selectedIndex, scope.stateData.length);
                       }
                   };
 

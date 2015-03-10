@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('habit')
-      .directive('habitStateSlider', function () {
+      .directive('habitStateSlider', function (habitDataService, habitService) {
           return {
               restrict: 'EA',
               templateUrl: 'templates/directives/habitStateSlider.html',
@@ -31,17 +31,23 @@
                       alert(selectedIndex);
                   };
 
-                  scope.nextStateClick = function (selectedIndex) {
+                  scope.nextStateClick = function (selectedIndex, totalStates) {
                       //TODO: basically you need to something like this:
+                      //don't forget to check your notepad++ file with the different scnearios.
+                      if (selectedIndex === totalStates - 1) {
 
-                      //when selectedIndex is 2
-                      //data.habit.completionDates.add(moment().utc().startOf('year');)
-                      //habitDataService.save(data);
+                          console.log("habitService", habitService.data);
+                          //data.habit.completionDates.add(moment().utc().startOf('year');)
+                          //habitDataService.save(habitService);
 
-                      //else just remove the completiondate and save it.
+
+                      } else {
+                          //else just remove the completiondate and save it.
+                      }
+
                       
 
-                      alert(selectedIndex);
+                      alert(totalStates);
                   };
               }
           }
