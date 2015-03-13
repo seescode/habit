@@ -31,23 +31,28 @@
                       alert(selectedIndex);
                   };
 
-                  scope.nextStateClick = function (selectedIndex, totalStates) {
+                  scope.nextStateClick = function (selectedIndex, stateData) {
                       //TODO: basically you need to something like this:
                       //don't forget to check your notepad++ file with the different scnearios.
-                      if (selectedIndex === totalStates - 1) {
+                      if (selectedIndex === stateData.length - 1) {
 
-                          console.log("habitService", habitService.data);
-                          //data.habit.completionDates.add(moment().utc().startOf('year');)
+
+                          //TODO: there's a bug because stateData isn't habitService.data which
+                          //what the below code assumes.  
+
+                          //if (stateData.completionDates == null) {
+                          //    stateData.completionDates = [];
+                          //}
+
+                          //stateData.completionDates.push(moment().utc().startOf('day'));
                           //habitDataService.save(habitService);
-
-
                       } else {
                           //else just remove the completiondate and save it.
                       }
 
                       
 
-                      alert(totalStates);
+                      alert(stateData.length);
                   };
               }
           }
