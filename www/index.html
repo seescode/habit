@@ -38,7 +38,7 @@
             <button ng-click="vm.sync()" class="button icon-left ion-android-sync">Sync</button>
         </ion-header-bar>
         <ion-content>            
-            <habit-state-slider ng-repeat="item in vm.data.Habits" state-text="item.StateText" selected-index="item.Index"></habit-state-slider>
+            <habit-state-slider ng-repeat="item in vm.data.Habits" habit="item"></habit-state-slider>
             <div class="no-habits" ng-bind="vm.msg"></div>
         </ion-content>
     </ion-pane>
