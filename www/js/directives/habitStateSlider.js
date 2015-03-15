@@ -39,8 +39,8 @@
                               scope.habit.completionDates = [];
                           }
 
-                          scope.habit.completionDates.push(moment().utc().startOf('day'));
-                          habitDataService.save(habitService);
+                          scope.habit.completionDates.push(moment().utc().startOf('day').toDate());
+                          habitDataService.save(habitService.data);
                       } else {
                           //else just remove the completiondate and save it.
                       }
