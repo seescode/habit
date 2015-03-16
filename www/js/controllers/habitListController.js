@@ -17,7 +17,13 @@
           });
 
           vm.sync = function () {
-              syncWebService.get(function (data) {
+
+              syncWebService.save()
+              .$promise
+              .then(function () {
+                  return syncWebService.get().$promise;
+              })
+              .then(function (data) {
                   if (data != null) {
                       vm.msg = '';
                       vm.data = data;

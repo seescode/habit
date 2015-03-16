@@ -30,6 +30,8 @@
                           return;
                       }
 
+                      //TODO: maybe refactor all of this to use like a peek rather than a pop.
+
                       var poppedDate = scope.habit.completionDates.pop();
 
                       //Check and see if this is something we actually need to remove
