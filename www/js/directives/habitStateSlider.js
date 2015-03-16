@@ -26,23 +26,42 @@
                   scope.stateData[2].cssClass = 'reward';
 
                   scope.prevStateClick = function (selectedIndex) {
-                      //TODO this method seems unnecessary.  
-                      alert(selectedIndex);
+                      if (scope.habit.completionDates == null || scope.habit.completionDates.length === 0) {
+                          return;
+                      }
+
+                      var poppedDate = scope.habit.completionDates.pop();
+
+                      //Check and see if this is something we actually need to remove
+                      var completionDate = moment(poppedDate);
+
+                      if (moment().utc().startOf('day').isSame(completionDate)) {
+                          habitDataService
+                              .save(habitService.data)
+                              .catch(function (error) {
+                                  console.log(error);
+                              });
+                      } else {
+                          //Since this is a different day we need to push it back on there.
+                          scope.habit.completionDates.push(completionDate);
+                      }
+
                   };
 
                   scope.nextStateClick = function (selectedIndex) {
-                      //TODO: basically you need to something like this:
-                      //don't forget to check your notepad++ file with the different scnearios.
+
                       if (selectedIndex === scope.habit.StateText.length - 1) {
-                        
+
                           if (scope.habit.completionDates == null) {
                               scope.habit.completionDates = [];
                           }
 
                           scope.habit.completionDates.push(moment().utc().startOf('day').toDate());
-                          habitDataService.save(habitService.data);
-                      } else {
-                          //else just remove the completiondate and save it.
+                          habitDataService
+                              .save(habitService.data)
+                              .catch(function (error) {
+                                  console.log(error);
+                              });
                       }
                   };
               }
