@@ -9,5 +9,6 @@ namespace HabitAdmin.Models
     {
         public string[] StateText { get; set; }
         public int Index { get; set; }
+        public HashSet<DateTime> CompletionDates { get; set; }
     }
 }

@@ -18,7 +18,7 @@
 
           vm.sync = function () {
 
-              syncWebService.save()
+              syncWebService.save(habitService.data)
               .$promise
               .then(function () {
                   return syncWebService.get().$promise;

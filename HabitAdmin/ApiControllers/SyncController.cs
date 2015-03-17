@@ -15,7 +15,7 @@ namespace HabitAdmin.ApiControllers
     {
         // GET api/<controller>
         public HabitDataModel Get()
-        {            
+        {
             HabitDataModel model = new HabitDataModel();
 
             using (var store = new DocumentStore
@@ -26,7 +26,7 @@ namespace HabitAdmin.ApiControllers
             {
                 using (var session = store.OpenSession())
                 {
-                    model = session.Load<HabitDataModel>("habits/1");             
+                    model = session.Load<HabitDataModel>("habits/1");
                 }
             }
 
@@ -34,9 +34,42 @@ namespace HabitAdmin.ApiControllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post(HabitDataModel habitDataModel)
         {
             //This will take in a diff of new data for all the habits.
+            Console.WriteLine(habitDataModel);
+
+            using (var store = new DocumentStore
+            {
+                Url = "http://localhost:8451/",
+                DefaultDatabase = "Habit"
+            }.Initialize())
+            {
+                using (var session = store.OpenSession())
+                {
+                    HabitDataModel updateModel = session.Load<HabitDataModel>("habits/1");   
+
+                    for (int i = 0; i < updateModel.Habits.Count; i++)
+                    {
+                        //TODO: so habitDataModel's and updateModel's CompletionDates
+                        //could be null.  I need to handle making them not be null to 
+                        //get this code to work.  Also need to test that the HashSet is
+                        //working by preventing duplicate dates.
+
+                        if (updateModel.Habits[i].CompletionDates == null)
+                        {
+                            updateModel.Habits[i].CompletionDates = new HashSet<DateTime>();
+                        }
+
+                        foreach (var newDate in habitDataModel.Habits[i].CompletionDates)
+	                    {
+                            updateModel.Habits[i].CompletionDates.Add(newDate);
+	                    }
+                    }
+
+                    session.SaveChanges();
+                }
+            }
 
 
         }
