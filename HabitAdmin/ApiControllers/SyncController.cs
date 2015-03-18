@@ -56,13 +56,18 @@ namespace HabitAdmin.ApiControllers
                         //get this code to work.  Also need to test that the HashSet is
                         //working by preventing duplicate dates.
 
-                        if (updateModel.Habits[i].CompletionDates == null)
+                        if (habitDataModel.Habits[i].CompletionDates == null)
                         {
-                            updateModel.Habits[i].CompletionDates = new HashSet<DateTime>();
+                            continue;
                         }
-
+                        
                         foreach (var newDate in habitDataModel.Habits[i].CompletionDates)
 	                    {
+                            if (updateModel.Habits[i].CompletionDates == null)
+                            {
+                                updateModel.Habits[i].CompletionDates = new HashSet<DateTime>();
+                            }
+
                             updateModel.Habits[i].CompletionDates.Add(newDate);
 	                    }
                     }
