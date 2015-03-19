@@ -27,6 +27,11 @@ namespace HabitAdmin.ApiControllers
                 using (var session = store.OpenSession())
                 {
                     model = session.Load<HabitDataModel>("habits/1");
+
+                    foreach (var item in model.Habits)
+                    {
+                        item.CompletionDates = null;                        
+                    }
                 }
             }
 
@@ -51,10 +56,6 @@ namespace HabitAdmin.ApiControllers
 
                     for (int i = 0; i < updateModel.Habits.Count; i++)
                     {
-                        //TODO: so habitDataModel's and updateModel's CompletionDates
-                        //could be null.  I need to handle making them not be null to 
-                        //get this code to work.  Also need to test that the HashSet is
-                        //working by preventing duplicate dates.
 
                         if (habitDataModel.Habits[i].CompletionDates == null)
                         {
