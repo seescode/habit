@@ -28,10 +28,7 @@ namespace HabitAdmin.ApiControllers
                 {
                     model = session.Load<HabitDataModel>("habits/1");
 
-                    foreach (var item in model.Habits)
-                    {
-                        item.CompletionDates = null;                        
-                    }
+                    model.Habits.ForEach(n => n.CompletionDates = null);
                 }
             }
 
@@ -56,6 +53,7 @@ namespace HabitAdmin.ApiControllers
 
                     for (int i = 0; i < updateModel.Habits.Count; i++)
                     {
+                        updateModel.Habits[i].Index = habitDataModel.Habits[i].Index;
 
                         if (habitDataModel.Habits[i].CompletionDates == null)
                         {
@@ -71,6 +69,8 @@ namespace HabitAdmin.ApiControllers
 
                             updateModel.Habits[i].CompletionDates.Add(newDate);
 	                    }
+
+
                     }
 
                     session.SaveChanges();
