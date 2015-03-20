@@ -51,27 +51,42 @@ namespace HabitAdmin.ApiControllers
                 {
                     HabitDataModel updateModel = session.Load<HabitDataModel>("habits/1");   
 
-                    for (int i = 0; i < updateModel.Habits.Count; i++)
-                    {
-                        updateModel.Habits[i].Index = habitDataModel.Habits[i].Index;
 
-                        if (habitDataModel.Habits[i].CompletionDates == null)
-                        {
-                            continue;
-                        }
+                    //TODO: replace the "join on" to be an actual index instead of some
+                    //array.
+                    var model =                                   
+                            from newInfo in habitDataModel.Habits
+                            join existingInfo in updateModel.Habits
+                            on newInfo.StateText equals existingInfo.StateText
+                            select new HabitModel()
+                            {                               
+                                CompletionDates = (HashSet<DateTime>)existingInfo.CompletionDates.Union(newInfo.CompletionDates),
+                                StateText = existingInfo.StateText,
+                                Index = newInfo.Index
+                            };
+
+                    updateModel.Habits = model.ToList();
+                 
+                    ////TODO clean up this loop mess by using functional programming.
+                    //for (int i = 0; i < updateModel.Habits.Count; i++)
+                    //{
+                    //    updateModel.Habits[i].Index = habitDataModel.Habits[i].Index;
+
+                    //    if (habitDataModel.Habits[i].CompletionDates == null)
+                    //    {
+                    //        continue;
+                    //    }
                         
-                        foreach (var newDate in habitDataModel.Habits[i].CompletionDates)
-	                    {
-                            if (updateModel.Habits[i].CompletionDates == null)
-                            {
-                                updateModel.Habits[i].CompletionDates = new HashSet<DateTime>();
-                            }
+                    //    foreach (var newDate in habitDataModel.Habits[i].CompletionDates)
+                    //    {
+                    //        if (updateModel.Habits[i].CompletionDates == null)
+                    //        {
+                    //            updateModel.Habits[i].CompletionDates = new HashSet<DateTime>();
+                    //        }
 
-                            updateModel.Habits[i].CompletionDates.Add(newDate);
-	                    }
-
-
-                    }
+                    //        updateModel.Habits[i].CompletionDates.Add(newDate);
+                    //    }
+                    //}
 
                     session.SaveChanges();
                 }
