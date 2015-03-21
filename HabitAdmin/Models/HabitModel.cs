@@ -7,8 +7,9 @@ namespace HabitAdmin.Models
 {
     public class HabitModel
     {
+        public int Id { get; set; }
         public string[] StateText { get; set; }
         public int Index { get; set; }
-        public HashSet<DateTime> CompletionDates { get; set; }
+        public List<DateTime> CompletionDates { get; set; }
     }
 }
