@@ -30,6 +30,26 @@
                           return;
                       }
 
+                      if (selectedIndex === scope.habit.StateText.length - 2) {
+
+                          if (scope.habit.actions) {
+                              // TODO: 
+                              //If there's already a "Create" for today you need to remove it.  
+                          } else {
+                              if (scope.habit.actions == null) {
+                                  scope.habit.actions = [];
+                              }
+
+                              scope.habit.actions.push({ "Delete": moment().utc().startOf('day').toDate() });
+                              habitDataService
+                                  .save(habitService.data)
+                                  .catch(function (error) {
+                                      console.log(error);
+                                  });
+                          }
+
+                      }
+
                       //TODO: maybe refactor all of this to use like a peek rather than a pop.
 
                       var poppedDate = scope.habit.completionDates.pop();
@@ -54,11 +74,11 @@
 
                       if (selectedIndex === scope.habit.StateText.length - 1) {
 
-                          if (scope.habit.completionDates == null) {
-                              scope.habit.completionDates = [];
+                          if (scope.habit.actions == null) {
+                              scope.habit.actions = [];
                           }
 
-                          scope.habit.completionDates.push(moment().utc().startOf('day').toDate());
+                          scope.habit.actions.push({"Create": moment().utc().startOf('day').toDate()});
                           habitDataService
                               .save(habitService.data)
                               .catch(function (error) {
