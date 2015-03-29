@@ -28,7 +28,6 @@
     <script src="js/directives/stateSlider.js"></script>
     <script src="js/controllers/habitListController.js"></script>
     <script src="js/directives/habitStateSlider.js"></script>
-    <script src="js/services/syncWebService.js"></script>
     <script src="js/services/constantsService.js"></script>
     <script src="js/services/habitDataService.js"></script>
     <script src="js/services/habitService.js"></script>
@@ -37,11 +36,9 @@
     <ion-pane>
         <ion-header-bar class="bar-stable">
             <h1 class="title">My Habits</h1>
-            <button ng-click="vm.sync()" class="button icon-left ion-android-sync">Sync</button>
         </ion-header-bar>
         <ion-content>
-            <div ng-bind="fire.Abc"></div>
-            <habit-state-slider ng-repeat="item in vm.data.Habits" habit="item"></habit-state-slider>
+            <habit-state-slider ng-repeat="item in data.Habits" habit="item"></habit-state-slider>
             <div class="no-habits" ng-bind="vm.msg"></div>
         </ion-content>
     </ion-pane>
