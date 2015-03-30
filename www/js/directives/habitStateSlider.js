@@ -26,22 +26,13 @@
                   scope.stateData[2].cssClass = 'reward';
 
                   scope.prevStateClick = function (selectedIndex) {
-                      if (scope.habit.completionDates == null || scope.habit.completionDates.length === 0) {
-                          return;
+
+                    /*
+                      if (scope.habit.completionDates                          //Since this is a different day we need to push it back on there.
+                          scope.habit.completionDates.push(completionDate);
                       }
 
-                      if (selectedIndex === scope.habit.StateText.length - 2) {
-
-                          if (scope.habit.actions) {
-                              // TODO:
-                              //If there's already a "Create" for today you need to remove it.
-                          } else {
-                              if (scope.habit.actions == null) {
-                                  scope.habit.actions = [];
-                              }
-
                               scope.habit.actions.push({ "Delete": moment().utc().startOf('day').toDate() });
-                          }
 
                       }
 
@@ -57,7 +48,7 @@
                       } else {
                           //Since this is a different day we need to push it back on there.
                           scope.habit.completionDates.push(completionDate);
-                      }
+                      } */
 
                   };
 
@@ -68,6 +59,9 @@
                           if (scope.habit.actions == null) {
                               scope.habit.actions = [];
                           }
+
+                          //scope.habit.actions.$add('yo');
+
 
                           scope.habit.actions.push({"Create": moment().utc().startOf('day').toDate()});
                       }
