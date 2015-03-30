@@ -14,7 +14,7 @@
               },
               replace: false,
               link: function (scope, element, attrs, ctrl) {
-                  scope.prevState = function () {                      
+                  scope.prevState = function () {
                       if (scope.selectedIndex > 0) {
                           scope.selectedIndex = scope.selectedIndex - 1;
                           scope.prevStateClick()(scope.selectedIndex, scope.stateData);
@@ -47,6 +47,3 @@
           }
       });
 })();
-
-
-

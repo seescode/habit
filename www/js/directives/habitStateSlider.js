@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('habit')
-      .directive('habitStateSlider', function (habitDataService, habitService) {
+      .directive('habitStateSlider', function (habitService) {
           return {
               restrict: 'EA',
               templateUrl: 'templates/directives/habitStateSlider.html',
@@ -33,19 +33,14 @@
                       if (selectedIndex === scope.habit.StateText.length - 2) {
 
                           if (scope.habit.actions) {
-                              // TODO: 
-                              //If there's already a "Create" for today you need to remove it.  
+                              // TODO:
+                              //If there's already a "Create" for today you need to remove it.
                           } else {
                               if (scope.habit.actions == null) {
                                   scope.habit.actions = [];
                               }
 
                               scope.habit.actions.push({ "Delete": moment().utc().startOf('day').toDate() });
-                              habitDataService
-                                  .save(habitService.data)
-                                  .catch(function (error) {
-                                      console.log(error);
-                                  });
                           }
 
                       }
@@ -58,11 +53,7 @@
                       var completionDate = moment(poppedDate);
 
                       if (moment().utc().startOf('day').isSame(completionDate)) {
-                          habitDataService
-                              .save(habitService.data)
-                              .catch(function (error) {
-                                  console.log(error);
-                              });
+
                       } else {
                           //Since this is a different day we need to push it back on there.
                           scope.habit.completionDates.push(completionDate);
@@ -79,17 +70,9 @@
                           }
 
                           scope.habit.actions.push({"Create": moment().utc().startOf('day').toDate()});
-                          habitDataService
-                              .save(habitService.data)
-                              .catch(function (error) {
-                                  console.log(error);
-                              });
                       }
                   };
               }
           }
       });
 })();
-
-
-
