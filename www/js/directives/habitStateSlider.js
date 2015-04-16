@@ -56,14 +56,15 @@
 
                       if (selectedIndex === scope.habit.StateText.length - 1) {
 
-                          if (scope.habit.actions == null) {
-                              scope.habit.actions = [];
+                          if (scope.habit.CompletionDates == null) {
+                              scope.habit.CompletionDates = [];
                           }
 
-                          //scope.habit.actions.$add('yo');
+                          var completionDate = moment().utc().startOf('day').toDate().getTime();;
+
+                          scope.habit.CompletionDates.push(completionDate);
 
 
-                          scope.habit.actions.push({"Create": moment().utc().startOf('day').toDate()});
                       }
                   };
               }
