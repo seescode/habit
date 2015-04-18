@@ -27,18 +27,9 @@
 
                   scope.prevStateClick = function (selectedIndex) {
 
-                    /*
-                      if (scope.habit.completionDates                          //Since this is a different day we need to push it back on there.
-                          scope.habit.completionDates.push(completionDate);
-                      }
-
-                              scope.habit.actions.push({ "Delete": moment().utc().startOf('day').toDate() });
-
-                      }
-
                       //TODO: maybe refactor all of this to use like a peek rather than a pop.
 
-                      var poppedDate = scope.habit.completionDates.pop();
+                      var poppedDate = scope.habit.CompletionDates.pop();
 
                       //Check and see if this is something we actually need to remove
                       var completionDate = moment(poppedDate);
@@ -47,9 +38,8 @@
 
                       } else {
                           //Since this is a different day we need to push it back on there.
-                          scope.habit.completionDates.push(completionDate);
-                      } */
-
+                          scope.habit.CompletionDates.push(completionDate);
+                      }
                   };
 
                   scope.nextStateClick = function (selectedIndex) {
