@@ -50,7 +50,7 @@
                               scope.habit.CompletionDates = [];
                           }
 
-                          var completionDate = moment().utc().startOf('day').toDate().getTime();;
+                          var completionDate = moment().utc().startOf('day').toDate().getTime();
 
                           scope.habit.CompletionDates.push(completionDate);
 
