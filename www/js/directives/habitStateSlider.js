@@ -2,62 +2,81 @@
 
 (function () {
     angular.module('habit')
-      .directive('habitStateSlider', function (habitService) {
-          return {
-              restrict: 'EA',
-              templateUrl: 'templates/directives/habitStateSlider.html',
-              scope: {
-                  habit: "="
-              },
-              replace: false,
-              link: function (scope, element, attrs, ctrl) {
+        .directive('habitStateSlider', function (habitService, $firebaseObject) {
+        return {
+            restrict: 'EA',
+            templateUrl: 'templates/directives/habitStateSlider.html',
+            scope: {
+                habit: "="
+            },
+            replace: false,
+            link: function (scope, element, attrs, ctrl) {
 
-                  scope.stateData = [];
-                  scope.stateData[0] = {};
-                  scope.stateData[1] = {};
-                  scope.stateData[2] = {};
+                var ref = new Firebase("https://vivid-fire-159.firebaseio.com/lastLogin");
+                var lastLogin = $firebaseObject(ref);
 
-                  scope.stateData[0].text = scope.habit.StateText[0];
-                  scope.stateData[1].text = scope.habit.StateText[1];
-                  scope.stateData[2].text = scope.habit.StateText[2];
+                //console.log(lastLogin.lastLogin);                      
+                
+                if (lastLogin.date == null) {
+                    lastLogin.date = moment().utc().startOf('day').toDate().getTime();
+                    lastLogin.$save().then(function (ref) {
+                        
+                    }, function (error) {
+                        console.log("Error:", error);
+                    });                    
+                } else {
+                    //TODO if lastLogin date is not today then reset all selectedIndex to 0 
+                    //Also update the lastLogin.date to today.
+                }
+                
+                
 
-                  scope.stateData[0].cssClass = 'cue';
-                  scope.stateData[1].cssClass = 'routine';
-                  scope.stateData[2].cssClass = 'reward';
+                scope.stateData = [];
+                scope.stateData[0] = {};
+                scope.stateData[1] = {};
+                scope.stateData[2] = {};
 
-                  scope.prevStateClick = function (selectedIndex) {
+                scope.stateData[0].text = scope.habit.StateText[0];
+                scope.stateData[1].text = scope.habit.StateText[1];
+                scope.stateData[2].text = scope.habit.StateText[2];
 
-                      //TODO: maybe refactor all of this to use like a peek rather than a pop.
+                scope.stateData[0].cssClass = 'cue';
+                scope.stateData[1].cssClass = 'routine';
+                scope.stateData[2].cssClass = 'reward';
 
-                      var poppedDate = scope.habit.CompletionDates.pop();
+                scope.prevStateClick = function (selectedIndex) {
 
-                      //Check and see if this is something we actually need to remove
-                      var completionDate = moment(poppedDate);
+                    //TODO: maybe refactor all of this to use like a peek rather than a pop.
 
-                      if (moment().utc().startOf('day').isSame(completionDate)) {
+                    var poppedDate = scope.habit.CompletionDates.pop();
 
-                      } else {
-                          //Since this is a different day we need to push it back on there.
-                          scope.habit.CompletionDates.push(completionDate);
-                      }
-                  };
+                    //Check and see if this is something we actually need to remove
+                    var completionDate = moment(poppedDate);
 
-                  scope.nextStateClick = function (selectedIndex) {
+                    if (moment().utc().startOf('day').isSame(completionDate)) {
 
-                      if (selectedIndex === scope.habit.StateText.length - 1) {
+                    } else {
+                        //Since this is a different day we need to push it back on there.
+                        scope.habit.CompletionDates.push(completionDate);
+                    }
+                };
 
-                          if (scope.habit.CompletionDates == null) {
-                              scope.habit.CompletionDates = [];
-                          }
+                scope.nextStateClick = function (selectedIndex) {
 
-                          var completionDate = moment().utc().startOf('day').toDate().getTime();
+                    if (selectedIndex === scope.habit.StateText.length - 1) {
 
-                          scope.habit.CompletionDates.push(completionDate);
+                        if (scope.habit.CompletionDates == null) {
+                            scope.habit.CompletionDates = [];
+                        }
+
+                        var completionDate = moment().utc().startOf('day').toDate().getTime();
+
+                        scope.habit.CompletionDates.push(completionDate);
 
 
-                      }
-                  };
-              }
-          }
-      });
+                    }
+                };
+            }
+        }
+    });
 })();
