@@ -27,6 +27,7 @@
     <script src="js/controllers/habitListController.js"></script>
     <script src="js/directives/habitStateSlider.js"></script>
     <script src="js/services/habitService.js"></script>
+    <script src="js/directives/habitStateEntry.js"></script>        
 </head>
 <body ng-app="habit" ng-controller="habitListController as vm">
     <ion-pane>
@@ -35,7 +36,7 @@
         </ion-header-bar>
         <ion-content>
             <habit-state-slider ng-repeat="item in data.Habits" habit="item"></habit-state-slider>
-            <div class="no-habits" ng-bind="vm.msg"></div>
+            <habit-state-entry habits="data.Habits"></habit-state-entry>
         </ion-content>
     </ion-pane>
 </body>
