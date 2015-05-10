@@ -17,7 +17,24 @@
                       //then do a push to add the new items in there.
                       console.log(scope.cue);
                       console.log(scope.routine);
-                      console.log(scope.reward);                      
+                      console.log(scope.reward);                     
+                      
+                      
+                      if (scope.habits == null) {
+                          scope.habits = [];
+                      } 
+                      
+                      scope.habits.push(
+                          {
+                              Index: 0,
+                              StateText: [
+                                  scope.cue,
+                                  scope.routine,
+                                  scope.reward
+                              ]
+                          }
+                          
+                      );
                       
                   };
               }
