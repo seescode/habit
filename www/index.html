@@ -32,8 +32,13 @@
 <body ng-app="habit" ng-controller="habitListController as vm">
     <ion-pane>
         <ion-header-bar class="bar-stable">
+            <div class="buttons">
+                <a class="button" ng-show="vm.mode == 'main'" href="#/manage" ng-click='vm.manage()'>Manage</a>
+                <a class="button" ng-show="vm.mode == 'manage'" href="#" ng-click='vm.home()'>Home</a>
+            </div>             
             <h1 class="title">My Habits</h1>
         </ion-header-bar>
+                
         <ion-content>
             <habit-state-slider ng-repeat="item in data.Habits" habit="item"></habit-state-slider>
             <habit-state-entry habits="data.Habits"></habit-state-entry>

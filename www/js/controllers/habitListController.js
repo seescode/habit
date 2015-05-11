@@ -4,6 +4,8 @@
     angular.module('habit')
         .controller('habitListController', function ($scope, habitService, $firebaseObject) {
         var vm = this;
+        
+        vm.mode = 'main';
 
         //https://vivid-fire-159.firebaseio.com/#-Jl1bNvbPj1v7Ke56pLi|67a1f7cd09fd2c233251c5aa2b5538eb
         var ref = new Firebase("https://vivid-fire-159.firebaseio.com");
@@ -40,5 +42,15 @@
             .catch(function (error) {
                 console.log('Cannot save lastLogin') 
             });
+            
+            
+         vm.manage = function() {
+             //TODO: need to actually change the url
+             vm.mode = 'manage';             
+         }
+         
+         vm.home = function() {
+             vm.mode = 'home';
+         }
     });
 })();
