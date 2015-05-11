@@ -15,34 +15,30 @@
         // click on `index.html` above to see it used in the DOM!
         syncObject.$bindTo($scope, "data");
 
+        var savableObject = $firebaseObject(ref);
+
         var today = moment().utc().startOf('day').toDate().getTime();
 
         var resetIndexesOnNewDay = function () {
-            if (syncObject.lastLogin.date != today) {
-                syncObject.Habits.forEach(function (element, index, array) {
+            if (savableObject.lastLogin.date != today) {
+                savableObject.Habits.forEach(function (element, index, array) {
                     element.Index = 0;
                 });
 
-                syncObject.lastLogin.date = today;
+                savableObject.lastLogin.date = today;
 
-                syncObject.$save().then(function (ref) {
-                    console.log('winner');
-                }, function (error) {
-                    console.log("Error:", error);
+                return savableObject.$save().then(function (ref) {
+                    console.log('lastlogin saved');
                 });
             }
         };
 
-        syncObject.$loaded()
+        savableObject.$loaded()
             .then(function (data) {
                 resetIndexesOnNewDay();
             })
             .catch(function (error) {
+                console.log('Cannot save lastLogin') 
             });
-
-
-
-
-
     });
 })();
