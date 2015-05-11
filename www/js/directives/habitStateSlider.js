@@ -12,24 +12,6 @@
             replace: false,
             link: function (scope, element, attrs, ctrl) {
 
-                var ref = new Firebase("https://vivid-fire-159.firebaseio.com/lastLogin");
-                var lastLogin = $firebaseObject(ref);
-
-                //console.log(lastLogin.lastLogin);                      
-                
-                if (lastLogin.date == null) {
-                    lastLogin.date = moment().utc().startOf('day').toDate().getTime();
-                    lastLogin.$save().then(function (ref) {
-                        
-                    }, function (error) {
-                        console.log("Error:", error);
-                    });                    
-                } else {
-                    //TODO if lastLogin date is not today then reset all selectedIndex to 0 
-                    //Also update the lastLogin.date to today.
-                }
-                
-                
 
                 scope.stateData = [];
                 scope.stateData[0] = {};
