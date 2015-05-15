@@ -37,12 +37,8 @@
                 <a class="button" ng-show="vm.mode == 'manage'" ui-sref="main" >Home</a>
             </div>             
             <h1 class="title">My Habits</h1>
-        </ion-header-bar>
-                
-        <ion-content>
-            <habit-state-slider ng-repeat="item in data.Habits" habit="item"></habit-state-slider>
-            <habit-state-entry habits="data.Habits"></habit-state-entry>
-        </ion-content>
+        </ion-header-bar>                
+        <ion-nav-view></ion-nav-view>
     </ion-pane>
 </body>
 </html>

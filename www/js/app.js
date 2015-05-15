@@ -9,12 +9,14 @@ angular.module('habit', ['ionic', 'ngResource', 'firebase'])
     $stateProvider
         .state('manage', {
         url: '/manage',
+        templateUrl: 'templates/manage.html',
         data: {
             mode: 'manage'
         }
     })
         .state('main', {
         url: '/',
+        templateUrl: 'templates/main.html',
         data: {
             mode: 'main'
         }        
