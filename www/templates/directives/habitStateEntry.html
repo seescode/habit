@@ -1,5 +1,6 @@
-﻿<div>    
+﻿<div class="habit-state-entry">    
     <div class="list">
+        <div class="delete" ng-show="mode.toLowerCase() == 'update'" ng-click="deleteItem()">X</div>
         <label class="item item-input">
             <input type="text" placeholder="Cue" ng-model="cue">
         </label>

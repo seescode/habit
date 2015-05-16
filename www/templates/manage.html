@@ -1,9 +1,6 @@
 <ion-view title="Kanji List">
-    <ion-content>
-        <p>This template should basically have a ng-repeat of habitStateEntries for 
-            all the existing items.  As well as an extra one for creating new entries.</p>
-            
-        <habit-state-entry ng-repeat="habit in data.Habits" mode="update" habit="habit"></habit-state-entry>
+    <ion-content>           
+        <habit-state-entry ng-repeat="habit in data.Habits" mode="update" habit="habit" delete="vm.delete"></habit-state-entry>
         <habit-state-entry mode="create" habits="data.Habits"></habit-state-entry>
     </ion-content>
 </ion-view>

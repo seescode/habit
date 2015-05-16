@@ -20,7 +20,6 @@
     background-color: blue;
 }
 
-
 .cue.state-collapsed {
     background-color: red;
 }
@@ -29,4 +28,19 @@
 }
 .reward.state-collapsed {
     background-color: blue;
+}
+
+.habit-state-entry>list {
+    position: relative;
+}
+
+.habit-state-entry .delete {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    right: 0px;
+    top: 0px;
+    z-index: 10;
+    
 }

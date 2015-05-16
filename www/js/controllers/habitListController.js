@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('habit')
-        .controller('habitListController', function ($scope, habitService, $firebaseObject, $rootScope) {
+        .controller('habitListController', function ($scope, $ionicPopup, habitService, $firebaseObject, $rootScope) {
         var vm = this;
 
         vm.mode = 'main';
@@ -37,6 +37,20 @@
             .catch(function (error) {
             console.log('Cannot save lastLogin')
         });
+
+        vm.delete = function (habit) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete',
+                template: 'Are you sure you want to delete this?'
+            });
+            confirmPopup.then(function (res) {
+                if (res) {
+                    _.remove($scope.data.Habits, function (n) {
+                        return habit === n;
+                    });                    
+                }
+            });
+        }
 
         $rootScope.$on('$stateChangeSuccess',
             function (event, toState, toParams, fromState, fromParams) {
